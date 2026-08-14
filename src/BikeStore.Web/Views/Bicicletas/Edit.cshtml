@@ -1,0 +1,45 @@
+@model Bicicleta
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Editar bicicleta";
+    var categorias = ViewBag.Categorias as SelectList;
+}
+
+<h1>Editar bicicleta</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit" class="col-md-6">
+    <input type="hidden" asp-for="IdBicicleta" />
+    <div class="mb-3">
+        <label asp-for="IdCategoria" class="form-label">Categoria</label>
+        <select asp-for="IdCategoria" class="form-select" asp-items="categorias">
+            <option value="">-- Seleccione --</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Marca" class="form-label"></label>
+        <input asp-for="Marca" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Modelo" class="form-label"></label>
+        <input asp-for="Modelo" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Precio" class="form-label"></label>
+        <input asp-for="Precio" class="form-control" type="number" step="0.01" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Stock" class="form-label"></label>
+        <input asp-for="Stock" class="form-control" type="number" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Estado" class="form-label"></label>
+        <select asp-for="Estado" class="form-select">
+            <option value="Disponible">Disponible</option>
+            <option value="Agotado">Agotado</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

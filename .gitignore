@@ -1,0 +1,22 @@
+# Archivos de compilacion .NET
+bin/
+obj/
+out/
+
+# Carpetas de Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# Publicacion
+publish/
+*.publishsettings
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Secretos locales (no subir cadenas de conexion reales si cambian)
+appsettings.Development.local.json

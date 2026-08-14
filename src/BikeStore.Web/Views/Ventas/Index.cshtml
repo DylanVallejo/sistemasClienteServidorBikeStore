@@ -1,0 +1,36 @@
+@model List<Venta>
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h1>Historial de ventas</h1>
+
+<p><a asp-action="Create" class="btn btn-success">Registrar venta</a></p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th># Venta</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Subtotal</th>
+            <th>IVA</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.IdVenta</td>
+                <td>@v.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@v.NombreCliente</td>
+                <td>@v.Subtotal.ToString("C")</td>
+                <td>@v.Iva.ToString("C")</td>
+                <td>@v.Total.ToString("C")</td>
+                <td><a asp-action="Details" asp-route-id="@v.IdVenta" class="btn btn-sm btn-info">Ver detalle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

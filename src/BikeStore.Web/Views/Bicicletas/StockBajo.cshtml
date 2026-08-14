@@ -1,0 +1,44 @@
+@model List<Bicicleta>
+@{
+    ViewData["Title"] = "Stock bajo";
+}
+
+<h1>Bicicletas con stock bajo</h1>
+
+<form asp-action="StockBajo" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <label class="col-form-label">Umbral (stock &le;)</label>
+    </div>
+    <div class="col-auto">
+        <input name="umbral" value="@ViewBag.Umbral" type="number" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Consultar</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Stock</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr class="@(b.Stock == 0 ? "table-danger" : "table-warning")">
+                <td>@b.NombreCategoria</td>
+                <td>@b.Marca</td>
+                <td>@b.Modelo</td>
+                <td>@b.Stock</td>
+                <td>@b.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

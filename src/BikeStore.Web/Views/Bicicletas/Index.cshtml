@@ -1,0 +1,67 @@
+@model List<Bicicleta>
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Bicicletas";
+    var categorias = ViewBag.Categorias as SelectList;
+}
+
+<h1>Bicicletas</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input name="nombre" value="@ViewBag.Nombre" class="form-control" placeholder="Modelo" />
+    </div>
+    <div class="col-auto">
+        <input name="marca" value="@ViewBag.Marca" class="form-control" placeholder="Marca" />
+    </div>
+    <div class="col-auto">
+        <select name="idCategoria" class="form-select" asp-items="categorias">
+            <option value="">-- Categoria --</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nueva bicicleta</a>
+    <a asp-action="StockBajo" class="btn btn-warning">Ver stock bajo</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>@b.NombreCategoria</td>
+                <td>@b.Marca</td>
+                <td>@b.Modelo</td>
+                <td>@b.Precio.ToString("C")</td>
+                <td>@b.Stock</td>
+                <td>@b.Estado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@b.IdBicicleta" class="btn btn-sm btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@b.IdBicicleta" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+@model List<Venta>
+@{
+    ViewData["Title"] = "Ventas del cliente";
+}
+
+<h1>Ventas de @ViewBag.NombreCliente</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th># Venta</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.IdVenta</td>
+                <td>@v.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@v.Total.ToString("C")</td>
+                <td><a asp-action="Details" asp-route-id="@v.IdVenta" class="btn btn-sm btn-info">Ver detalle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Clientes" asp-action="Index" class="btn btn-secondary">Volver a clientes</a>

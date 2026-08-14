@@ -1,0 +1,23 @@
+@model Bicicleta
+@{
+    ViewData["Title"] = "Eliminar bicicleta";
+}
+
+<h1>Eliminar bicicleta</h1>
+
+<p class="text-danger">Esta seguro de eliminar esta bicicleta?</p>
+
+<dl class="row col-md-6">
+    <dt class="col-sm-4">Marca / Modelo</dt>
+    <dd class="col-sm-8">@Model.Marca @Model.Modelo</dd>
+    <dt class="col-sm-4">Categoria</dt>
+    <dd class="col-sm-8">@Model.NombreCategoria</dd>
+    <dt class="col-sm-4">Precio</dt>
+    <dd class="col-sm-8">@Model.Precio.ToString("C")</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdBicicleta" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
