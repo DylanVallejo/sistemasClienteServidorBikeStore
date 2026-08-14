@@ -1,0 +1,73 @@
+@BikeStore.API_HostAddress = http://localhost:5159
+
+### 1) Registrar una nueva bicicleta (POST)
+POST {{BikeStore.API_HostAddress}}/api/bicicletas
+Content-Type: application/json
+
+{
+  "idCategoria": 1,
+  "marca": "Merida",
+  "modelo": "Big Nine 100",
+  "precio": 850.00,
+  "stock": 10,
+  "estado": "Disponible"
+}
+
+### 2) Actualizar precio y stock de una bicicleta (PUT) - cambiar el id
+PUT {{BikeStore.API_HostAddress}}/api/bicicletas/1
+Content-Type: application/json
+
+{
+  "idBicicleta": 1,
+  "idCategoria": 1,
+  "marca": "Trek",
+  "modelo": "Marlin 5",
+  "precio": 699.99,
+  "stock": 20,
+  "estado": "Disponible"
+}
+
+### 3) Eliminar una bicicleta (DELETE) - cambiar el id
+DELETE {{BikeStore.API_HostAddress}}/api/bicicletas/7
+
+### 4) Consultar todas las bicicletas (GET)
+GET {{BikeStore.API_HostAddress}}/api/bicicletas
+
+### 5) Buscar bicicletas por categoria y marca
+GET {{BikeStore.API_HostAddress}}/api/bicicletas/buscar?idCategoria=1&marca=Trek
+
+### 6) Registrar un nuevo cliente
+POST {{BikeStore.API_HostAddress}}/api/clientes
+Content-Type: application/json
+
+{
+  "cedula": "0999888777",
+  "nombres": "Ana",
+  "apellidos": "Salazar Ruiz",
+  "telefono": "0961112223",
+  "correo": "ana.salazar@correo.com"
+}
+
+### 7) Registrar una venta con varios productos (descuenta stock automaticamente)
+POST {{BikeStore.API_HostAddress}}/api/ventas
+Content-Type: application/json
+
+{
+  "idCliente": 1,
+  "detalles": [
+    { "idBicicleta": 1, "cantidad": 1 },
+    { "idBicicleta": 5, "cantidad": 2 }
+  ]
+}
+
+### 8) Consultar el historial de ventas
+GET {{BikeStore.API_HostAddress}}/api/ventas
+
+### 9) Consultar las ventas realizadas por un cliente
+GET {{BikeStore.API_HostAddress}}/api/ventas/cliente/1
+
+### 10) Consultar bicicletas con stock bajo (umbral opcional)
+GET {{BikeStore.API_HostAddress}}/api/bicicletas/stock-bajo?umbral=5
+
+### Extra) CRUD de categorias
+GET {{BikeStore.API_HostAddress}}/api/categorias
