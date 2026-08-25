@@ -47,6 +47,17 @@ scripts/02_datos_prueba.sql
 La cadena de conexion esta en `src/BikeStore.API/appsettings.json`.
 Si tu instancia es distinta a `.\SQLEXPRESS`, cambiala ahi.
 
+> Alternativa sin SQL Server Express: se puede usar **LocalDB** (viene con
+> las herramientas de .NET/Visual Studio) sin cambiar el codigo. Ver detalles
+> en `AVANCE.txt`. Resumen:
+> ```
+> sqllocaldb start MSSQLLocalDB
+> sqlcmd -S "(localdb)\MSSQLLocalDB" -i scripts/01_crear_bd.sql
+> sqlcmd -S "(localdb)\MSSQLLocalDB" -i scripts/02_datos_prueba.sql
+> ```
+> y correr la API con la cadena de LocalDB via variable de entorno
+> `ConnectionStrings__BikeStoreDB`.
+
 ### 2) Levantar la API
 ```
 cd src/BikeStore.API
