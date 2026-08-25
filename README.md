@@ -32,7 +32,8 @@ Web MVC  ->  API REST  ->  DataAccess (ADO.NET)  ->  SQL Server
 ## Requisitos
 
 - .NET SDK 10
-- SQL Server (Express) con la instancia `.\SQLEXPRESS`
+- SQL Server con instancia por defecto (`.` / `MSSQLSERVER`, ej. SQL Server
+  Developer/Express instalado como instancia por defecto)
 
 ## Puesta en marcha
 
@@ -44,19 +45,12 @@ scripts/02_datos_prueba.sql
 ```
 (Se pueden abrir en SSMS, o ver comandos de sqlcmd en `scripts/README.md`.)
 
-La cadena de conexion esta en `src/BikeStore.API/appsettings.json`.
-Si tu instancia es distinta a `.\SQLEXPRESS`, cambiala ahi.
-
-> Alternativa sin SQL Server Express: se puede usar **LocalDB** (viene con
-> las herramientas de .NET/Visual Studio) sin cambiar el codigo. Ver detalles
-> en `AVANCE.txt`. Resumen:
-> ```
-> sqllocaldb start MSSQLLocalDB
-> sqlcmd -S "(localdb)\MSSQLLocalDB" -i scripts/01_crear_bd.sql
-> sqlcmd -S "(localdb)\MSSQLLocalDB" -i scripts/02_datos_prueba.sql
-> ```
-> y correr la API con la cadena de LocalDB via variable de entorno
-> `ConnectionStrings__BikeStoreDB`.
+La cadena de conexion esta en `src/BikeStore.API/appsettings.json` y apunta a
+la instancia por defecto (`Server=.`). Si tu SQL Server corre como instancia
+con nombre (ej. `.\SQLEXPRESS`) o solo tienes LocalDB, **no edites
+appsettings.json**: define la cadena correcta con la variable de entorno
+`ConnectionStrings__BikeStoreDB` antes de correr la API. Detalles y ejemplos
+en `INSTRUCCIONES_EQUIPO.md`, seccion 3.
 
 ### 2) Levantar la API
 ```

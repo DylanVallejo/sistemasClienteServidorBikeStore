@@ -20,3 +20,13 @@ publish/
 
 # Secretos locales (no subir cadenas de conexion reales si cambian)
 appsettings.Development.local.json
+
+# Documentos de uso interno (no forman parte del entregable para el equipo)
+AVANCE.txt
+informe/
+Division_Tareas_Detallada_BikeStore.docx
+
+reautoria_push_rama.py
+
+# Cache de Python al correr los scripts de validacion/configuracion
+__pycache__/
