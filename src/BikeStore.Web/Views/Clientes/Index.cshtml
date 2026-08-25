@@ -1,0 +1,56 @@
+@model List<Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1>Clientes</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<form asp-action="Index" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input name="cedula" value="@ViewBag.Cedula" class="form-control" placeholder="Cedula" />
+    </div>
+    <div class="col-auto">
+        <input name="apellido" value="@ViewBag.Apellido" class="form-control" placeholder="Apellido" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+        <a asp-action="Index" class="btn btn-secondary">Limpiar</a>
+    </div>
+</form>
+
+<p><a asp-action="Create" class="btn btn-success">Nuevo cliente</a></p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cedula</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Cedula</td>
+                <td>@c.Nombres</td>
+                <td>@c.Apellidos</td>
+                <td>@c.Telefono</td>
+                <td>@c.Correo</td>
+                <td>
+                    <a asp-controller="Ventas" asp-action="PorCliente" asp-route-idCliente="@c.IdCliente" class="btn btn-sm btn-info">Ventas</a>
+                    <a asp-action="Edit" asp-route-id="@c.IdCliente" class="btn btn-sm btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@c.IdCliente" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
